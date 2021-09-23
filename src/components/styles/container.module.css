@@ -1,0 +1,43 @@
+
+
+.container{
+    display: flex;
+    color: #076AB2;
+    background-color: white;
+}
+
+.logoDiv{
+    flex-grow: 2;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 800;
+    
+}
+
+.navigation{
+    flex-grow: 5;
+   
+}
+
+.navigation ul{
+display: flex;
+list-style-type: none;
+}
+
+.navigation li{
+    margin: auto 10px auto 10px;
+}
+
+.cartIcon img{
+width: 30px;
+height: 30px;
+}
+
+.footer{
+    background-color: #076AB2;
+    width: 100%;
+    color: white;
+    display: flex;
+    height: 50px;
+    justify-content: center;
+}

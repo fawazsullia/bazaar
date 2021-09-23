@@ -1,23 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { actionCreators } from "./state/actionCreators/index";
+import { bindActionCreators } from "redux";
+
+import Container from "./components/Container";
+import Shop from "./views/Shop";
 
 function App() {
+  const state = useSelector((state) => state);
+  const dispatch = useDispatch();
+  const { setProduct } = bindActionCreators(actionCreators, dispatch);
+
+  //fetch data when initial loading
+
+  useEffect(() => {
+    fetch("https://fakestoreapi.com/products")
+      .then((response) => response.json())
+      .then((data) => {
+        setProduct(data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Container>
+        <Shop />
+      </Container>
     </div>
   );
 }

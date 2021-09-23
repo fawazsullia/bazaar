@@ -1,0 +1,25 @@
+.container{
+    max-width: 200px;
+    background-color: white;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.image{
+    width: 160px;
+    height : 200px;
+}
+
+.price{
+    font-weight: 600;
+}
+
+.button{
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #3EB759;
+    color: white;
+}

@@ -1,0 +1,55 @@
+
+
+.container{
+    min-height: 100vh;
+}
+
+.flexDiv{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+
+
+.categoryDiv{
+    padding: 10px 5px 20px 5px ;
+    width: 20vw;
+    background-color: white;
+    align-self:flex-start;
+    height: 70vh;
+}
+
+.categoryDiv p {
+    margin-left: 10px;
+    font-size: 1.2 rem;
+    font-weight: 600;
+}
+
+.categoryDiv ul{
+    list-style-type: none;
+    padding-left: 0;
+    
+}
+
+.categoryDiv li{
+    
+    margin-left: 0px;
+    text-align: center;
+    padding: 10px 10px 10px 10px;
+}
+
+.categoryDiv li:hover{
+    background-color: #EAEDED;
+    cursor: pointer;
+}
+
+
+.productListDiv{
+    width: 80vw;
+    display: flex;
+    gap : 40px;
+    flex-wrap: wrap;
+    padding-left: 40px;
+}

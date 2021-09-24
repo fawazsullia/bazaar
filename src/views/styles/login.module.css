@@ -1,0 +1,62 @@
+.container{
+    
+    min-height: 90vh;
+}
+
+.container button:hover{
+    cursor: pointer;
+}
+
+.formContainer{
+    width: 28%;
+    background-color: white;
+    margin: 60px auto 100px auto;
+    padding: 10px 30px 30px 30px;
+}
+
+.form h2{
+    font-weight: 400;
+    font-size: 1.6rem;
+}
+
+.form input{
+    width: 100%;
+    height: 40px;
+    border: none;
+    box-shadow: 0 0 2px black;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    padding-left: 10px;
+    font-size: 1rem;
+    outline: none;
+}
+
+.form input:focus{
+    box-shadow: 0 0 4px #428BCA;
+}
+
+.form button{
+    margin-top: 20px;
+    border: none;
+    outline: none;
+    background-color: #428BCA;
+    width: 100%;
+    height: 40px;
+    color: white;
+}
+
+.formContainer p{
+    font-size: 0.9rem;
+}
+
+.loginWithGoogle p{
+    font-weight: 600;
+}
+
+.loginWithGoogle button{
+    width: 100%;
+    height: 40px;
+    background-color: white;
+    border: 1px solid #428BCA;
+    outline: none;
+}

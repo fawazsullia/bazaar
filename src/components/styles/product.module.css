@@ -5,6 +5,32 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    position: relative;
+}
+
+.container:hover {
+    cursor: pointer;
+}
+
+.container:hover > :is(.image, .price, .title){
+opacity: 0.3;}
+
+.container:hover > .view{
+    position: absolute;
+    display: block;
+    top: 40%;
+    left: 40%;
+    transform: translate(-35%, -40%);
+    background-color: #3EB759;
+    opacity: 1;
+    z-index: 10;
+    padding: 10px;
+    color: white;
+    font-size: 0.8rem;
+}
+
+.view{
+    display: none;
 }
 
 .image{
@@ -22,4 +48,8 @@
     border: none;
     background-color: #3EB759;
     color: white;
+}
+
+.button:hover{
+    cursor: pointer;
 }

@@ -9,6 +9,7 @@ import Container from "./components/Container";
 import Shop from "./views/Shop";
 import Login from "./views/Login";
 import AfterRegister from "./views/AfterRegister";
+import ProductPage from "./views/ProductPage";
 
 function App() {
   const state = useSelector((state) => state);
@@ -47,6 +48,10 @@ console.log(state)
 
         <Route path="/register-2">
         <AfterRegister />
+        </Route>
+
+        <Route path="/product/">
+        <ProductPage />
         </Route>
 
         </Switch>

@@ -8,6 +8,7 @@ import Register from "./views/Register";
 import Container from "./components/Container";
 import Shop from "./views/Shop";
 import Login from "./views/Login";
+import AfterRegister from "./views/AfterRegister";
 
 function App() {
   const state = useSelector((state) => state);
@@ -25,6 +26,8 @@ function App() {
       .catch((err) => console.log(err));
   }, []);
 
+console.log(state)
+
   return (
     <div className="App">
       <Container>
@@ -40,6 +43,10 @@ function App() {
 
         <Route path="/login">
         <Login />
+        </Route>
+
+        <Route path="/register-2">
+        <AfterRegister />
         </Route>
 
         </Switch>

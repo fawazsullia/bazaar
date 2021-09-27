@@ -12,3 +12,13 @@ return (dispatch) => {
 }
 
 }
+
+export const addTocart = (data) => {
+
+return (dispatch)=>{
+
+  dispatch({type : "addTocart", payload : data})
+
+}
+
+}

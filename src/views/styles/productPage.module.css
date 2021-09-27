@@ -1,0 +1,47 @@
+.container{
+    width: 90%;
+    margin: 50px auto 100px auto;
+    background-color: white;
+    padding: 40px;
+}
+
+.productContainer{
+    display: flex;
+    gap: 30px;
+}
+
+.productImage img{
+    width: 28vw;
+    height: 60vh;
+}
+
+.productDetails{
+    padding-top: 30px;
+}
+
+.star{
+    width: 16px;
+    height: 16px;
+}
+
+.price{
+    font-weight: 600;
+}
+
+.description{
+    width: 70%;
+    font-weight: 500;
+}
+
+
+
+.related{
+
+margin-top: 130px;
+
+}
+
+.relatedProducts{
+    display: flex;
+    gap: 10px;
+}

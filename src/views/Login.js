@@ -39,11 +39,12 @@ userRef.on('value', (snapshot) => {
     address : data.address,
     uid : data.uid,
     signedIn : true,
-    cart : [],
-    orders : []
+    cart : data.cart || [],
+    orders : data.orders || []
     }
     setUserOnRegister(toSet);
-    setredirect(true)
+    setredirect(true);
+    localStorage.setItem("userUid", data.uid );
 });
     // ...
   })
@@ -71,11 +72,12 @@ const loginGoogle = () => {
         address : data.address,
         uid : data.uid,
         signedIn : true,
-        cart : [],
-        orders : []
+        cart : data.cart || [],
+        orders : data.orders || []
         }
         setUserOnRegister(toSet);
-        setredirect(true)
+        setredirect(true);
+        localStorage.setItem("userUid", data.uid );
     });
 
   }).catch((error) => {

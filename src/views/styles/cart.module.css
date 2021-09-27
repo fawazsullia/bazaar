@@ -1,0 +1,80 @@
+.container{
+    display: flex;
+    gap: 20px;
+    padding: 50px 20px 100px 20px;
+    margin: auto;
+    width: 90%;
+}
+
+.cartListContainer{
+    background: white;
+    padding: 20px;
+    width: 60vw;
+}
+
+.cartList {
+    margin-top: 30px;
+}
+
+.cartList img{
+width: 100px;
+height: 100px;
+}
+
+.product{
+    margin-bottom: 50px;
+    display: flex;
+    gap: 20px;
+    width: 90%;
+}
+
+.prodTitle{
+    margin-right: 20px;
+    font-weight: 500;
+    font-size: 1.2rem;
+}
+
+.edit{
+    margin-top: 20px;
+}
+
+.edit span{
+    margin-left: 30px;
+}
+
+.edit select{
+    outline: none;
+    padding: 5px;
+}
+
+.edit span:hover{
+    cursor: pointer;
+    color: red;
+    text-decoration: underline;
+}
+
+.totalDiv{
+    background: white;
+    padding: 20px;
+    height: 35vh;
+}
+
+.totalDiv button{
+    width: 100%;
+    background-color: green;
+    color: white;
+    padding: 10px;
+    outline: none;
+    border: none;
+    margin-top: 20px;
+}
+
+.totalDiv button:hover{
+    cursor: pointer;
+}
+
+.moneyback{
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+

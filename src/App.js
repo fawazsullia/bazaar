@@ -10,6 +10,7 @@ import Shop from "./views/Shop";
 import Login from "./views/Login";
 import AfterRegister from "./views/AfterRegister";
 import ProductPage from "./views/ProductPage";
+import Cart from "./views/Cart";
 
 function App() {
   const state = useSelector((state) => state);
@@ -19,6 +20,7 @@ function App() {
   //fetch data when initial loading
 
   useEffect(() => {
+    const uid = localStorage.getItem("userUid")
     fetch("https://fakestoreapi.com/products")
       .then((response) => response.json())
       .then((data) => {
@@ -52,6 +54,10 @@ console.log(state)
 
         <Route path="/product/">
         <ProductPage />
+        </Route>
+
+        <Route path="/cart">
+          <Cart />
         </Route>
 
         </Switch>

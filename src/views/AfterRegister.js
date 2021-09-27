@@ -38,7 +38,7 @@ orders : []
 }
 
 firebase.database().ref('users/' + uid).set(data)
-  .then(()=> { setUserOnRegister(data); setsaving(false); setredirect(true) })
+  .then(()=> { setUserOnRegister(data); setsaving(false); setredirect(true); localStorage.setItem("userUid", uid ) })
   .catch((err)=>{ setsaving(false); seterrorMessage(err.message)  })
 
 

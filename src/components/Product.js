@@ -1,7 +1,12 @@
 import { Link } from 'react-router-dom'
+import AddToCart from './AddToCart'
 import * as productStyle from './styles/product.module.css'
 
 function Product({product}) {
+
+const id = product.id;
+
+
 
     return (
         <div className={productStyle.container}>
@@ -9,7 +14,7 @@ function Product({product}) {
           <img src={product.image} className={productStyle.image} />
           <p className={productStyle.price}>$ {product.price}</p>  
           <p className={productStyle.title}>{product.title}</p>  
-            <button onClick={()=> {console.log("clicked product button")}} className={productStyle.button}>Add to cart</button>
+          <AddToCart product={product} />
         </div>
     )
 }

@@ -2,8 +2,9 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators } from "./state/actionCreators/index";
 import { bindActionCreators } from "redux";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import Register from "./views/Register";
+import firebase from "./firebaseConfig";
 
 import Container from "./components/Container";
 import Shop from "./views/Shop";
@@ -15,19 +16,42 @@ import Cart from "./views/Cart";
 function App() {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
-  const { setProduct } = bindActionCreators(actionCreators, dispatch);
+  const { setProduct, setUserOnRegister } = bindActionCreators(actionCreators, dispatch);
 
   //fetch data when initial loading
 
   useEffect(() => {
-    const uid = localStorage.getItem("userUid")
-    fetch("https://fakestoreapi.com/products")
-      .then((response) => response.json())
-      .then((data) => {
-        setProduct(data);
-      })
-      .catch((err) => console.log(err));
-  }, []);
+    
+    const uid = localStorage.getItem("userUid");
+    if(uid){
+    const userref = firebase.database().ref('users/' + uid);
+userref.on('value', (snapshot) => {
+  const data = snapshot.val();
+  const toSet =  {
+    displayName: data.displayName,
+    email: data.email,
+    address : data.address,
+    uid : data.uid,
+    signedIn : true,
+    cart : data.cart || [],
+    orders : data.orders || []
+    }
+    setUserOnRegister(toSet);
+});}
+else {  setUserOnRegister({signedIn : false})   }
+}, []);
+
+useEffect(() => {
+  fetch("https://fakestoreapi.com/products")
+  .then((response) => response.json())
+  .then((data) => {
+    setProduct(data);
+  })
+  .catch((err) => console.log(err));
+  
+}, [])
+   
+let signedIn = state.currentUser.signedIn
 
 console.log(state)
 
@@ -56,9 +80,8 @@ console.log(state)
         <ProductPage />
         </Route>
 
-        <Route path="/cart">
-          <Cart />
-        </Route>
+        { signedIn ? <Route path="/cart"  component={Cart} /> : <Redirect to="/login" /> }
+          
 
         </Switch>
       </Container>

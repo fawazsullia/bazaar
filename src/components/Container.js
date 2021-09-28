@@ -1,8 +1,33 @@
 import React, { Children } from "react";
 import {Link, NavLink} from 'react-router-dom'
 import * as containerStyle from "./styles/container.module.css";
+import firebase from "../firebaseConfig";
+import { useSelector, useDispatch } from "react-redux";
+import { actionCreators } from "../state/actionCreators/index";
+import { bindActionCreators } from "redux";
+
+
 
 function Container({ children }) {
+
+  const state = useSelector((state) => state);
+  const dispatch = useDispatch();
+  const { setProduct, setUserOnRegister, signOut } = bindActionCreators(actionCreators, dispatch);
+
+  const signedIn = state.currentUser.signedIn;
+
+  const handleSignOut = () => {
+    firebase.auth().signOut().then(() => {
+      localStorage.removeItem("userUid")
+      alert("Signed Out successfully");
+      signOut()
+      
+    }).catch((error) => {
+      alert("Couldn't sign out")
+    });
+  }
+
+
 
 const linkStyle = {
   textDecoration : "none",
@@ -32,6 +57,7 @@ const linkActiveStyle = {
             </li>
           </ul>
         </nav>
+       { signedIn && <button type="button" onClick={handleSignOut}  className={containerStyle.signOut}>Log Out</button> }
       </div>
       {children}
       <footer className={containerStyle.footer}>

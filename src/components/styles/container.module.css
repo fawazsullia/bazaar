@@ -41,3 +41,18 @@ height: 30px;
     height: 50px;
     justify-content: center;
 }
+
+.signOut{
+    margin-right: 30px;
+    height: 30px;
+    align-self: center;
+    outline: none;
+    border: none;
+    padding: 5px 10px;
+    color: white;
+    background-color: indianred ;
+}
+
+.signOut:hover{
+    cursor: pointer;
+}

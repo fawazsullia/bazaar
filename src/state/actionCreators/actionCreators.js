@@ -22,3 +22,12 @@ return (dispatch)=>{
 }
 
 }
+
+export const signOut = () => {
+
+return (dispatch)=> {
+  dispatch({type : "signOut"})
+}
+
+
+}

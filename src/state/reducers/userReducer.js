@@ -1,4 +1,4 @@
-const userReducer = (state = {}, action) => {
+const userReducer = (state = { signedIn : false}, action) => {
 
 switch(action.type){
 
@@ -8,6 +8,9 @@ case 'setUserOnRegister' :
 
 case 'addTocart' :
   return {...state , cart : [{productId : action.payload.id, count : 1}, ...state.cart]} 
+
+  case 'signOut' : 
+  return { signedIn : false  }
 
  default : return state 
 

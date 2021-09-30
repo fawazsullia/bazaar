@@ -28,20 +28,27 @@ firebase.auth().onAuthStateChanged((user)=>{
 const email = user.email;
 const uid = user.uid;
 
-const data =  {displayName: name,
+const data =  {
+displayName: name,
 email: email,
 address : address,
 uid : uid,
-signedIn : true,
-cart : [],
-orders : []
 }
 
-firebase.database().ref('users/' + uid).set(data)
-  .then(()=> { setUserOnRegister(data); setsaving(false); setredirect(true); localStorage.setItem("userUid", uid ) })
-  .catch((err)=>{ setsaving(false); seterrorMessage(err.message)  })
+const set = {   ...data, signedIn : true, cart : [], orders : []}
 
+fetch('https://bazaar-back.herokuapp.com/user', {
 
+method : 'POST',
+headers : {
+  'content-type' : 'application/json'
+},
+body : JSON.stringify(data)
+
+})
+.then((res)=> res.json()     )
+.then((res)=> { console.log(res); setUserOnRegister(set); setsaving(false); setredirect(true); localStorage.setItem("userUid", uid )   }    )
+.catch((err)=> {   setsaving(false); seterrorMessage(err.message)})
 })}
 
 

@@ -28,25 +28,25 @@ const loginEmail = () => {
 
     let user = userCredential.user;
 
-    //query db for userdata
-    var userRef = firebase.database().ref('users/' + user.uid);
-userRef.on('value', (snapshot) => {
-  const data = snapshot.val();
-
-  const toSet =  {
-    displayName: data.displayName,
-    email: data.email,
-    address : data.address,
-    uid : data.uid,
-    signedIn : true,
-    cart : data.cart || [],
-    orders : data.orders || []
-    }
-    setUserOnRegister(toSet);
+    fetch(`https://bazaar-back.herokuapp.com/user/${user.uid}`)
+    .then((res)=> res.json())
+    .then((data)=> {
+      const toSet =  {
+        displayName: data.displayName,
+        email: data.email,
+        address : data.address,
+        uid : data.uid,
+        signedIn : true,
+        cart : data.cart,
+        orders : data.orders,
+        userType : data.userType
+        }
+        setUserOnRegister(toSet);
     setredirect(true);
-    localStorage.setItem("userUid", data.uid );
-});
-    // ...
+    localStorage.setItem("userUid", user.uid );
+
+
+    })
   })
   .catch((error) => {
     seterrorMessage(error.message)
@@ -60,32 +60,31 @@ const loginGoogle = () => {
   firebase.auth()
   .signInWithPopup(provider)
   .then((result) => {
-    var uid = result.user.uid;
+    var user = result.user;
 
-    //query db for user data
-    var userRef = firebase.database().ref('users/' + uid);
-    userRef.on('value', (snapshot) => {
-      const data = snapshot.val();
+    fetch(`https://bazaar-back.herokuapp.com/user/${user.uid}`)
+    .then((res)=> res.json())
+    .then((data)=> {
       const toSet =  {
         displayName: data.displayName,
         email: data.email,
         address : data.address,
         uid : data.uid,
         signedIn : true,
-        cart : data.cart || [],
-        orders : data.orders || []
+        cart : data.cart,
+        orders : data.orders,
+        userType : data.userType
         }
         setUserOnRegister(toSet);
-        setredirect(true);
-        localStorage.setItem("userUid", data.uid );
-    });
+    setredirect(true);
+    localStorage.setItem("userUid", user.uid );
 
   }).catch((error) => {
     seterrorMessage(error.message)
     setsigningIn(false)
-  });
+  })})}
 
-}
+
 
 
   return (

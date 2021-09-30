@@ -48,10 +48,10 @@ const linkActiveStyle = {
         </div>
         <nav className={containerStyle.navigation}>
           <ul>
-            <li><NavLink style={linkStyle} activeStyle={linkActiveStyle} to="/profile">Profile</NavLink></li>
-            <li><NavLink style={linkStyle} activeStyle={linkActiveStyle} to="/login">Login</NavLink></li>
-            <li><NavLink style={linkStyle} activeStyle={linkActiveStyle} to="/register">Register</NavLink></li>
-            <li><NavLink style={linkStyle} activeStyle={linkActiveStyle} to="/admin">Admin</NavLink></li>
+           {signedIn && <li><NavLink style={linkStyle} activeStyle={linkActiveStyle} to="/profile">Profile</NavLink></li>}
+           {!signedIn && <li><NavLink style={linkStyle} activeStyle={linkActiveStyle} to="/login">Login</NavLink></li> }
+           {!signedIn && <li><NavLink style={linkStyle} activeStyle={linkActiveStyle} to="/register">Register</NavLink></li>}
+           { signedIn && state.currentUser.userType === 'admin' && <li><NavLink style={linkStyle} activeStyle={linkActiveStyle} to="/admin">Admin</NavLink></li> }
             <li className={containerStyle.cartIcon}>
             <Link style={linkStyle} to="/cart"><img src="shoppingCart.png"></img></Link>
             </li>

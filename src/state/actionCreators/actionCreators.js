@@ -31,3 +31,19 @@ return (dispatch)=> {
 
 
 }
+
+export const changeCartCount = (data) => {
+
+return (dispatch) => {
+  dispatch({type : 'changeCartCount', payload : data})
+}
+
+}
+
+export const deleteFromcart = (data) => {
+
+return (dispatch) => {
+  dispatch({type : 'deleteFromCart', payload : data})
+}
+
+}

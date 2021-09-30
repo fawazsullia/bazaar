@@ -1,11 +1,61 @@
 import React from 'react'
-import {useSelector} from 'react-redux'
 import * as cartStyle from './styles/cart.module.css'
+import { useSelector, useDispatch } from "react-redux";
+import { actionCreators } from "../state/actionCreators/index";
+import { bindActionCreators } from "redux";
+
 
 function Cart() {
 
 const state = useSelector(state => state)
 let requiredProduct;
+
+const dispatch = useDispatch()
+const { setProduct, setUserOnRegister, changeCartCount, deleteFromcart } = bindActionCreators(actionCreators, dispatch);
+
+const changeCount = (e) =>{
+
+    let productId = Number(e.target.id)
+    let count = e.target.value;
+
+    changeCartCount({productId : productId, count : count})
+
+    fetch('https://bazaar-back.herokuapp.com/user/cart/count', {
+
+method : 'PUT',
+headers : {
+    'content-type' : 'application/json'
+},
+body : JSON.stringify({ uid : state.currentUser.uid, count : count, productId : productId})
+
+    } )
+    .then((res)=> res.json())
+    .then((response)=> { console.log(response)     })
+    .catch((err)=> {console.log(err)})
+
+}
+
+const deleteItem = (e) => {
+
+let productId = Number(e.target.id);
+deleteFromcart(productId)
+fetch('https://bazaar-back.herokuapp.com/user/cart/del', { 
+
+method : 'PUT', 
+headers : {
+    'content-type' : 'application/json'
+},
+body : JSON.stringify({uid: state.currentUser.uid , productId : productId})
+
+ })
+ .then((res)=> {res.json()})
+ .then((response)=> { console.log(response)  })
+ .catch((err)=> {console.log(err)})
+
+}
+
+
+
 
     return (
         <div className={cartStyle.container}>
@@ -22,7 +72,7 @@ let requiredProduct;
                         <span>$ {requiredProduct.price}</span>
                         {/* <p>{requiredProduct.description}</p> */}
                         <div className={cartStyle.edit}>
-                            <select>
+                            <select onChange={changeCount} id={requiredProduct.id} value={product.count}>
                                 <option>1</option>
                                 <option>2</option>
                                 <option>3</option>
@@ -30,7 +80,7 @@ let requiredProduct;
                                 <option>5</option>
                                 <option>6</option>
                             </select>
-                            <span>delete</span>
+                            <span id={requiredProduct.id} onClick={deleteItem}>delete</span>
                         </div>
                     </div>
                     

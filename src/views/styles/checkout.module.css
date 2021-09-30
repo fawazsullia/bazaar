@@ -1,0 +1,90 @@
+.container{
+    min-height: 100vh;
+    width: 80%;
+    margin: 50px auto auto;
+}
+
+.firstRow{
+    display: flex;
+    gap : 20px;
+}
+
+.addressContainer{
+    background-color: white ;
+    padding: 20px;
+}
+
+.address{
+    width: 70%;
+}
+
+.totalContainer{
+    background-color: white;
+    padding: 20px;
+    width: 30%;
+
+}
+
+.totalContainer button{
+    border: none;
+    outline: none;
+    background-color: #3EB759;
+    color: white;
+    padding: 10px 20px; 
+    margin-top: 50px;
+
+}
+
+.productsContainer{
+    margin-top: 50px;
+    background-color: white;
+    width: 100%;
+    padding: 40px 20px 40px 20px;
+}
+
+.cardContainer{
+display: flex;
+justify-content: space-between;
+margin-top: 20px;
+}
+
+.price{
+    width : 30%
+}
+
+.title{
+width : 40%;
+margin-right: 40px;}
+
+.count{
+    width : 30%
+}
+
+.total{
+    width : 30%
+}
+
+.paymentContainer{
+    margin-top: 50px;
+    padding: 40px 20px 40px 20px;
+    background-color: white;
+    width: 30%;
+}
+
+.paymentContainer input{
+    margin-bottom: 10px;
+}
+
+.placeOrder2{
+    margin-top: 50px;
+    margin-bottom: 150px;
+    border: none;
+    outline: none;
+    background-color: #3EB759;
+    color: white;
+    padding: 10px 20px;
+}
+
+:is(.totalContainer button , .placeOrder2):hover{
+    cursor: pointer;
+}

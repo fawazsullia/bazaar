@@ -1,4 +1,5 @@
-import React from 'react'
+import React, {useState} from 'react'
+import {Link} from 'react-router-dom'
 import * as cartStyle from './styles/cart.module.css'
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators } from "../state/actionCreators/index";
@@ -10,8 +11,12 @@ function Cart() {
 const state = useSelector(state => state)
 let requiredProduct;
 
+const [amount, setamount] = useState(0)
+
 const dispatch = useDispatch()
 const { setProduct, setUserOnRegister, changeCartCount, deleteFromcart } = bindActionCreators(actionCreators, dispatch);
+
+
 
 const changeCount = (e) =>{
 
@@ -64,7 +69,7 @@ body : JSON.stringify({uid: state.currentUser.uid , productId : productId})
              <hr />
              <div className={cartStyle.cartList}>
                  { state.currentUser.cart.map((product)=>  { requiredProduct = state.products.filter((selected)=> selected.id === product.productId    )[0];
-                
+                 
                 return <div className={cartStyle.product}>
                     <img src={requiredProduct.image} />
                     <div className={cartStyle.details}>
@@ -91,7 +96,7 @@ body : JSON.stringify({uid: state.currentUser.uid , productId : productId})
             <div className={cartStyle.totalDiv}>
                 <p className={cartStyle.moneyback}>100% Pay Protection</p>
                 <p>Cart Total (4 items) : $200</p>
-                <button type="button">Buy</button>
+              { state.currentUser.cart.length === 0 ? <button type="button" disabled="true">Cart is Empty</button> : <Link to="/checkout"><button type="button">Buy</button></Link> }
             </div>
         </div>
     )

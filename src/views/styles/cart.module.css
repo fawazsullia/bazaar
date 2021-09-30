@@ -4,6 +4,7 @@
     padding: 50px 20px 100px 20px;
     margin: auto;
     width: 90%;
+    min-height: 100vh;
 }
 
 .cartListContainer{

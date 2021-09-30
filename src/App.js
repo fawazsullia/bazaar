@@ -12,6 +12,7 @@ import AfterRegister from "./views/AfterRegister";
 import ProductPage from "./views/ProductPage";
 import Cart from "./views/Cart";
 import Loader from "./components/Loader";
+import Checkout from "./views/Checkout";
 
 function App() {
   const state = useSelector((state) => state);
@@ -84,6 +85,10 @@ console.log(state)
 
         <Route path="/product/">
         <ProductPage />
+        </Route>
+
+        <Route path="/checkout">
+          <Checkout />
         </Route>
 
         <Route path="/loader">

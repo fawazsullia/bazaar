@@ -4,6 +4,7 @@ import * as cartStyle from './styles/cart.module.css'
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators } from "../state/actionCreators/index";
 import { bindActionCreators } from "redux";
+import {calculateTotal} from '../helpers/calculateTotal'
 
 
 function Cart() {
@@ -16,7 +17,7 @@ const [amount, setamount] = useState(0)
 const dispatch = useDispatch()
 const { setProduct, setUserOnRegister, changeCartCount, deleteFromcart } = bindActionCreators(actionCreators, dispatch);
 
-
+let cartTotal = calculateTotal(state.products, state.currentUser.cart)
 
 const changeCount = (e) =>{
 
@@ -70,7 +71,7 @@ body : JSON.stringify({uid: state.currentUser.uid , productId : productId})
              <div className={cartStyle.cartList}>
                  { state.currentUser.cart.map((product)=>  { requiredProduct = state.products.filter((selected)=> selected.id === product.productId    )[0];
                  
-                return <div className={cartStyle.product}>
+                return <div className={cartStyle.product} key={requiredProduct.id}>
                     <img src={requiredProduct.image} />
                     <div className={cartStyle.details}>
                         <span className={cartStyle.prodTitle} >{requiredProduct.title}</span>
@@ -95,7 +96,7 @@ body : JSON.stringify({uid: state.currentUser.uid , productId : productId})
             </div>
             <div className={cartStyle.totalDiv}>
                 <p className={cartStyle.moneyback}>100% Pay Protection</p>
-                <p>Cart Total (4 items) : $200</p>
+                <p>Cart Total : $ {cartTotal}</p>
               { state.currentUser.cart.length === 0 ? <button type="button" disabled="true">Cart is Empty</button> : <Link to="/checkout"><button type="button">Buy</button></Link> }
             </div>
         </div>

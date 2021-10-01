@@ -50,6 +50,7 @@ const loginEmail = () => {
   })
   .catch((error) => {
     seterrorMessage(error.message)
+    setsigningIn(false)
   });
 
 }
@@ -96,7 +97,7 @@ const loginGoogle = () => {
         <h2>Please Login here</h2>
         <input type="email" placeholder="Email" onChange={(e)=>{ setemail(e.target.value)}   }></input>
         <br />
-        <input type="password" placeholder="Password" onChange={(e)=>{ setpassword(e.target.value)}   }></input>
+        <input type="password" placeholder="Password"  onChange={(e)=>{ setpassword(e.target.value)}   }></input>
         <p>{errorMessage}</p>
         <br />
         <button type="button" onClick={loginEmail}>{ signingIn ? "Logging In..." : "Login"}</button>

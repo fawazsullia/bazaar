@@ -22,6 +22,12 @@ return { ...state, cart : [ {productId : action.payload.id, count : 1}   , ...st
     let modifiedCart = state.cart.filter((item)=> item.productId !== action.payload  )
     return { ...state, cart : modifiedCart}
 
+    case 'emptyCart' :
+      return { ...state, cart : []  }
+
+    case 'order' : 
+    return { ...state, orders : [ action.payload  ,...state.orders  ]     }
+
  default : return state 
 
 

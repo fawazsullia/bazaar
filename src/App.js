@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators } from "./state/actionCreators/index";
 import { bindActionCreators } from "redux";
@@ -20,10 +20,12 @@ function App() {
   const dispatch = useDispatch();
   const { setProduct, setUserOnRegister } = bindActionCreators(actionCreators, dispatch);
 
+  const [loading, setloading] = useState(false)
+
   //fetch data when initial loading
 
   useEffect(() => {
-    
+    setloading(true)
     const uid = localStorage.getItem("userUid");
     console.log(uid)
     if(uid){
@@ -53,9 +55,9 @@ useEffect(() => {
   fetch("https://fakestoreapi.com/products")
   .then((response) => response.json())
   .then((data) => {
-    setProduct(data);
+    setProduct(data); setloading(false)
   })
-  .catch((err) => console.log(err));
+  .catch((err) => setloading(false));
   
 }, [])
    
@@ -63,6 +65,8 @@ let signedIn = state.currentUser.signedIn
 
 console.log(state)
 
+if(loading){  return <Loader />    }
+else {
   return (
     <div className="App">
       <Container>
@@ -88,13 +92,12 @@ console.log(state)
         <ProductPage />
         </Route>
 
-        <Route path="/checkout">
-          <Checkout />
-        </Route>
+        
 
-        <Route path="/profile">
-          <Profile />
-        </Route>
+        { signedIn ? <Route path="/checkout"  component={Checkout} /> : <Redirect to="/login" /> }
+
+
+        { signedIn ? <Route path="/profile"  component={Profile} /> : <Redirect to="/login" /> }
 
         <Route path="/loader">
           <Loader />
@@ -108,7 +111,7 @@ console.log(state)
         </Switch>
       </Container>
     </div>
-  );
+  );}
 }
 
 export default App;

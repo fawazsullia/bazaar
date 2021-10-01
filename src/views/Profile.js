@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { actionCreators } from "../state/actionCreators/index";
 import { bindActionCreators } from "redux";
 import firebase from '../firebaseConfig'
+import { order } from '../state/actionCreators/actionCreators';
 
 function Profile() {
 
@@ -82,33 +83,23 @@ function Profile() {
             <div className={profileStyle.orders}>
                 <h3>Orders</h3>
 
-                <div className={profileStyle.card}>
+               { state.currentUser.orders.map((order)=> {
+               
+               return(
+               <div className={profileStyle.card}>
                 <div className={profileStyle.cardTop}>
-                    <p>Date : 20/11/2021</p>
-                    <p>Total : $ 200</p>
+                    <p>Date : {order.date}</p>
+                    <p>Total : $ {order.total}</p>
                 </div>
                 <div className={profileStyle.cardBottom}>
-                    <img src="shoppingCart.png" />
+                    <img src={order.image} />
                     <div>
-                        <p>Product Title here</p>
-                        <p>Count : 3</p>
+                        <p>{order.title}</p>
+                        <p>Count : {order.count}</p>
                     </div>
-                    <p>Processing</p>
-                </div></div>
-
-                <div className={profileStyle.card}>
-                <div className={profileStyle.cardTop}>
-                    <p>Date : 20/11/2021</p>
-                    <p>Total : $ 200</p>
-                </div>
-                <div className={profileStyle.cardBottom}>
-                    <img src="shoppingCart.png" />
-                    <div>
-                        <p>Product Title here</p>
-                        <p>Count : 3</p>
-                    </div>
-                    <p>Processing</p>
-                </div></div>
+                    <p>{order.status}</p>
+                </div></div>)
+}) }
 
             </div>
 

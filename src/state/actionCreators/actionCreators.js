@@ -47,3 +47,19 @@ return (dispatch) => {
 }
 
 }
+
+export const emptyCart = () =>{
+
+return (dispatch) => {
+  dispatch({type : 'emptyCart'})
+}
+
+}
+
+export const order = (data) =>{
+
+return (dispatch)=> {
+  dispatch({type : 'order', payload : data})
+}
+
+}

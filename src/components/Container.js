@@ -1,4 +1,4 @@
-import React, { Children } from "react";
+import React from "react";
 import {Link, NavLink} from 'react-router-dom'
 import * as containerStyle from "./styles/container.module.css";
 import firebase from "../firebaseConfig";

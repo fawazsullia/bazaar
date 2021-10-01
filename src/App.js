@@ -13,6 +13,7 @@ import ProductPage from "./views/ProductPage";
 import Cart from "./views/Cart";
 import Loader from "./components/Loader";
 import Checkout from "./views/Checkout";
+import Profile from "./views/Profile";
 
 function App() {
   const state = useSelector((state) => state);
@@ -89,6 +90,10 @@ console.log(state)
 
         <Route path="/checkout">
           <Checkout />
+        </Route>
+
+        <Route path="/profile">
+          <Profile />
         </Route>
 
         <Route path="/loader">

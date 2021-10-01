@@ -1,0 +1,84 @@
+.container{
+    width: 80%;
+    min-height: 100vh;
+    margin: auto;
+}
+
+.personalInfo{
+    background-color: white;
+    padding: 20px;
+    margin-top: 50px;
+    
+}
+
+.personalInfo input{
+    margin: 10px auto 10px auto;
+    border: none;
+    outline: none;
+    padding-left: 10px;
+    height: 30px;
+    background-color: transparent;
+}
+
+.personalInfo textarea{
+    border: none;
+    height: 80px;
+    margin-top: 10px;
+    resize: none;
+    padding: 10px;
+}
+
+.personalInfo button{
+    outline: none;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    margin: 20px 20px auto auto;
+}
+
+.personalInfo button:hover{
+    cursor: pointer;
+}
+
+.orders{
+    background-color: white;
+    padding: 20px;
+    margin: 50px auto 150px auto;
+}
+
+.cardTop{
+    background-color: #DAD7D7;
+    display: flex;
+    justify-content: space-between;
+    padding: 2px 10px;
+}
+
+.cardBottom{
+    display: flex;
+    width: 90%;
+    margin: 10px auto;
+    justify-content: space-between;
+}
+
+.cardBottom img{
+    width: 20%;
+}
+
+.dangerSection{
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 200px;
+}
+
+.dangerSection button{
+    background-color: red;
+    padding: 10px 20px;
+    color: white;
+    border: none;
+    outline: none;
+    margin-top: 20px;
+}
+
+.dangerSection button:hover{
+    cursor: pointer;
+}

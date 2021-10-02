@@ -1,0 +1,16 @@
+.container{
+    min-height: 100vh;
+   text-align: center;
+   margin-top: 20vh;
+}
+
+.container h1{
+    font-size: 2.5rem;
+}
+
+.btn{
+    padding: 10px 20px;
+    background-color: green ;
+    width: 10%;
+    margin: 40px auto auto auto;
+}

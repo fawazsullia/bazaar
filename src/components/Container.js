@@ -52,9 +52,11 @@ const linkActiveStyle = {
            {!signedIn && <li><NavLink style={linkStyle} activeStyle={linkActiveStyle} to="/login">Login</NavLink></li> }
            {!signedIn && <li><NavLink style={linkStyle} activeStyle={linkActiveStyle} to="/register">Register</NavLink></li>}
            { signedIn && state.currentUser.userType === 'admin' && <li><NavLink style={linkStyle} activeStyle={linkActiveStyle} to="/admin">Admin</NavLink></li> }
+            
             <li className={containerStyle.cartIcon}>
             <Link style={linkStyle} to="/cart"><img src="shoppingCart.png"></img></Link>
             </li>
+            <li><a style={{textDecoration: "none", color : "inherit"}} href="https://www.notion.so/How-to-use-Bazaar-807f71f7e7d343c7b25a3b4275a172c0" target="_blank">How to use</a></li>
           </ul>
         </nav>
        { signedIn && <button type="button" onClick={handleSignOut}  className={containerStyle.signOut}>Log Out</button> }

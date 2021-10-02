@@ -14,8 +14,10 @@ import Cart from "./views/Cart";
 import Loader from "./components/Loader";
 import Checkout from "./views/Checkout";
 import Profile from "./views/Profile";
+import Spinner from "./components/Spinner";
+import ThankYou from "./views/ThankYou";
 
-function App() {
+ function App  () {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
   const { setProduct, setUserOnRegister } = bindActionCreators(actionCreators, dispatch);
@@ -44,7 +46,15 @@ function App() {
         }
         setUserOnRegister(toSet);
 
-      })
+        fetch("https://fakestoreapi.com/products")
+  .then((response) => response.json())
+  .then((data) => {
+    setProduct(data); setloading(false)
+  })
+
+      })  
+      .catch((err) => setloading(false));
+
 
   
 ;}
@@ -52,12 +62,7 @@ else {  setUserOnRegister({signedIn : false})   }
 }, []);
 
 useEffect(() => {
-  fetch("https://fakestoreapi.com/products")
-  .then((response) => response.json())
-  .then((data) => {
-    setProduct(data); setloading(false)
-  })
-  .catch((err) => setloading(false));
+  
   
 }, [])
    
@@ -92,16 +97,20 @@ else {
         <ProductPage />
         </Route>
 
-        
+        <Route path="/loader">
+          <Spinner />
+        </Route>
+
+        <Route path="/thank-you">
+        <ThankYou />
+        </Route>
 
         { signedIn ? <Route path="/checkout"  component={Checkout} /> : <Redirect to="/login" /> }
 
 
         { signedIn ? <Route path="/profile"  component={Profile} /> : <Redirect to="/login" /> }
 
-        <Route path="/loader">
-          <Loader />
-        </Route>
+       
 
         { signedIn ? <Route path="/cart"  component={Cart} /> : <Redirect to="/login" /> }
 

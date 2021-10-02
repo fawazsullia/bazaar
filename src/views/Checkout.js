@@ -90,7 +90,7 @@ let cartTotal = calculateTotal(state.products, state.currentUser.cart)
 
     return (
 
-        redirect ? <Redirect to="/" /> :
+        redirect ? <Redirect to="/thank-you" /> :
 
         <div className={checkoutStyle.container}>
         <h3>Checkout</h3>
@@ -137,7 +137,7 @@ let cartTotal = calculateTotal(state.products, state.currentUser.cart)
 
             </div>
 
-            <button className={checkoutStyle.placeOrder2} type="button" onClick={handleOrder}>Place Order</button>
+            <button className={checkoutStyle.placeOrder2} type="button" onClick={handleOrder}>{ ordering ? "Ordering..." : "Place Order"}</button>
         </div>
     )
 }

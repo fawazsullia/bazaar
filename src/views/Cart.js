@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { actionCreators } from "../state/actionCreators/index";
 import { bindActionCreators } from "redux";
 import {calculateTotal} from '../helpers/calculateTotal'
+import Spinner from '../components/Spinner';
 
 
 function Cart() {
@@ -12,7 +13,7 @@ function Cart() {
 const state = useSelector(state => state)
 let requiredProduct;
 
-const [amount, setamount] = useState(0)
+const [loading, setloading] = useState(false)
 
 const dispatch = useDispatch()
 const { setProduct, setUserOnRegister, changeCartCount, deleteFromcart } = bindActionCreators(actionCreators, dispatch);
@@ -20,7 +21,7 @@ const { setProduct, setUserOnRegister, changeCartCount, deleteFromcart } = bindA
 let cartTotal = calculateTotal(state.products, state.currentUser.cart)
 
 const changeCount = (e) =>{
-
+    setloading(true)
     let productId = Number(e.target.id)
     let count = e.target.value;
 
@@ -36,15 +37,14 @@ body : JSON.stringify({ uid : state.currentUser.uid, count : count, productId : 
 
     } )
     .then((res)=> res.json())
-    .then((response)=> { console.log(response)     })
-    .catch((err)=> {console.log(err)})
+    .then((response)=> { console.log(response); setloading(false)     })
+    .catch((err)=> { alert("Failed to update cart"); setloading(false)})
 
 }
 
 const deleteItem = (e) => {
-
+setloading(true)
 let productId = Number(e.target.id);
-deleteFromcart(productId)
 fetch('https://bazaar-back.herokuapp.com/user/cart/del', { 
 
 method : 'PUT', 
@@ -55,8 +55,8 @@ body : JSON.stringify({uid: state.currentUser.uid , productId : productId})
 
  })
  .then((res)=> {res.json()})
- .then((response)=> { console.log(response)  })
- .catch((err)=> {console.log(err)})
+ .then((response)=> { deleteFromcart(productId)  ; setloading(false)  })
+ .catch((err)=> { alert("Somrthing went wrong. Try again"); setloading(false)  })
 
 }
 
@@ -64,14 +64,18 @@ body : JSON.stringify({uid: state.currentUser.uid , productId : productId})
 
 
     return (
-        <div className={cartStyle.container}>
+
+        <div className={cartStyle.container} style={{opacity : loading ? "20%" : ""}}>
             <div className={cartStyle.cartListContainer}>
+            { loading && <Spinner />}
+
              <h2>Shopping Cart</h2>   
              <hr />
+             {  state.currentUser.cart.length == 0 ? <p style={{textAlign : "center", marginTop : "20%"}}>Cart is empty</p> :
              <div className={cartStyle.cartList}>
                  { state.currentUser.cart.map((product)=>  { requiredProduct = state.products.filter((selected)=> selected.id === product.productId    )[0];
                  
-                return <div className={cartStyle.product} key={requiredProduct.id}>
+                return <div className={cartStyle.product} key={requiredProduct.id} >
                     <img src={requiredProduct.image} />
                     <div className={cartStyle.details}>
                         <span className={cartStyle.prodTitle} >{requiredProduct.title}</span>
@@ -93,6 +97,8 @@ body : JSON.stringify({uid: state.currentUser.uid , productId : productId})
                 </div>
                 }      )     }
              </div>
+
+            }
             </div>
             <div className={cartStyle.totalDiv}>
                 <p className={cartStyle.moneyback}>100% Pay Protection</p>

@@ -27,6 +27,7 @@ import ThankYou from "./views/ThankYou";
   //fetch data when initial loading
 
   useEffect(() => {
+    console.log("Working")
     setloading(true)
     const uid = localStorage.getItem("userUid");
     console.log(uid)
@@ -58,7 +59,16 @@ import ThankYou from "./views/ThankYou";
 
   
 ;}
-else {  setUserOnRegister({signedIn : false})   }
+else {  setUserOnRegister({signedIn : false})
+
+fetch("https://fakestoreapi.com/products")
+  .then((response) => response.json())
+  .then((data) => {
+    setProduct(data); setloading(false)})
+
+
+
+}
 }, []);
 
 useEffect(() => {

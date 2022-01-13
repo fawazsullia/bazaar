@@ -5,6 +5,7 @@ import firebase from '../firebaseConfig'
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators } from "../state/actionCreators/index";
 import { bindActionCreators } from "redux";
+import config from "../config";
 
 function Login() {
 
@@ -28,7 +29,7 @@ const loginEmail = () => {
 
     let user = userCredential.user;
 
-    fetch(`https://bazaar-back.herokuapp.com/user/${user.uid}`)
+    fetch(`${config.baseUrl}/user/${user.uid}`)
     .then((res)=> res.json())
     .then((data)=> {
       const toSet =  {
@@ -63,7 +64,7 @@ const loginGoogle = () => {
   .then((result) => {
     var user = result.user;
 
-    fetch(`https://bazaar-back.herokuapp.com/user/${user.uid}`)
+    fetch(`${config.baseUrl}/user/${user.uid}`)
     .then((res)=> res.json())
     .then((data)=> {
       const toSet =  {

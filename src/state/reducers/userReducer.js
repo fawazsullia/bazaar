@@ -1,41 +1,42 @@
-const userReducer = (state = { signedIn : false}, action) => {
+const userReducer = (state = { signedIn: false }, action) => {
+  switch (action.type) {
+    case "setUserOnRegister":
+      return action.payload;
 
-switch(action.type){
+    case "addTocart":
+      return {
+        ...state,
+        cart: [{ productId: action.payload.id, count: 1 }, ...state.cart],
+      };
 
-case 'setUserOnRegister' : 
-  return action.payload
+    case "signOut":
+      return { signedIn: false };
 
+    case "changeCartCount":
+      let newCart = state.cart.filter(
+        (item) => item.productId !== action.payload.productId
+      );
+      newCart.unshift({
+        productId: action.payload.productId,
+        count: action.payload.count,
+      });
+      return { ...state, cart: newCart };
 
-case 'addTocart' :
-return { ...state, cart : [ {productId : action.payload.id, count : 1}   , ...state.cart    ]    } 
+    case "deleteFromCart":
+      let modifiedCart = state.cart.filter(
+        (item) => item.productId !== action.payload
+      );
+      return { ...state, cart: modifiedCart };
 
+    case "emptyCart":
+      return { ...state, cart: [] };
 
-  case 'signOut' : 
-  return { signedIn : false  }
+    case "order":
+      return { ...state, orders: [action.payload, ...state.orders] };
 
-  case 'changeCartCount' :
-    let newCart = state.cart.filter((item)=> item.productId !== action.payload.productId )
-    newCart.unshift({productId: action.payload.productId, count : action.payload.count})
-    return { ...state, cart : newCart}
+    default:
+      return state;
+  }
+};
 
-    case 'deleteFromCart' : 
-    let modifiedCart = state.cart.filter((item)=> item.productId !== action.payload  )
-    return { ...state, cart : modifiedCart}
-
-    case 'emptyCart' :
-      return { ...state, cart : []  }
-
-    case 'order' : 
-    return { ...state, orders : [ action.payload  ,...state.orders  ]     }
-
- default : return state 
-
-
-}
-
-
-
-
-}
-
-export default userReducer
+export default userReducer;

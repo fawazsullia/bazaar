@@ -1,11 +1,23 @@
-import React from 'react'
-import * as loaderStyle from './styles/loader.module.css'
+import React from "react";
+import * as loaderStyle from "./styles/loader.module.css";
 
 function Loader() {
-    return (
-        
-<div className={loaderStyle.ldsSpinner}><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>        
-    )
+  return (
+    <div className={loaderStyle.ldsSpinner}>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  );
 }
 
-export default Loader
+export default Loader;

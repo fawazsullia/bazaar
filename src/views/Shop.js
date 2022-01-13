@@ -6,7 +6,7 @@ import * as shopStyle from "./styles/shop.module.css";
 function Shop() {
   const state = useSelector((state) => state);
   const [currentCategory, setcurrentCategory] = useState("all");
-  const [activeCategory, setactiveCategory] = useState("1")
+  const [activeCategory, setactiveCategory] = useState("1");
 
   return (
     <div className={shopStyle.container}>
@@ -16,39 +16,63 @@ function Shop() {
           <div className={shopStyle.categoryDiv}>
             <p>Categories</p>
             <ul>
-              <li id="1"
-              onClick={() => {setcurrentCategory("all"); setactiveCategory('1')}}
-              style={{ backgroundColor : activeCategory === '1' ? "#E5E5E5" : ""}}
-              >All
-              </li>
-              <li id="2"
+              <li
+                id="1"
                 onClick={() => {
-                  setcurrentCategory("men's clothing");  setactiveCategory('2')
+                  setcurrentCategory("all");
+                  setactiveCategory("1");
                 }}
-                style={{ backgroundColor : activeCategory === '2' ? "#E5E5E5" : ""}}
-                >Men's clothing
+                style={{
+                  backgroundColor: activeCategory === "1" ? "#E5E5E5" : "",
+                }}
+              >
+                All
               </li>
-              <li id="3"
+              <li
+                id="2"
                 onClick={() => {
-                  setcurrentCategory("women's clothing");  setactiveCategory('3')
+                  setcurrentCategory("men's clothing");
+                  setactiveCategory("2");
                 }}
-                style={{ backgroundColor : activeCategory === '3' ? "#E5E5E5" : ""}}
+                style={{
+                  backgroundColor: activeCategory === "2" ? "#E5E5E5" : "",
+                }}
+              >
+                Men's clothing
+              </li>
+              <li
+                id="3"
+                onClick={() => {
+                  setcurrentCategory("women's clothing");
+                  setactiveCategory("3");
+                }}
+                style={{
+                  backgroundColor: activeCategory === "3" ? "#E5E5E5" : "",
+                }}
               >
                 Women's clothing
               </li>
-              <li id="4"
+              <li
+                id="4"
                 onClick={() => {
-                  setcurrentCategory("jewelery");  setactiveCategory('4')
+                  setcurrentCategory("jewelery");
+                  setactiveCategory("4");
                 }}
-                style={{ backgroundColor : activeCategory === '4' ? "#E5E5E5" : ""}}
+                style={{
+                  backgroundColor: activeCategory === "4" ? "#E5E5E5" : "",
+                }}
               >
                 Jewelery
               </li>
-              <li id="5"
+              <li
+                id="5"
                 onClick={() => {
-                  setcurrentCategory("electronics");  setactiveCategory('5')
+                  setcurrentCategory("electronics");
+                  setactiveCategory("5");
                 }}
-                style={{ backgroundColor : activeCategory === '5' ? "#E5E5E5" : ""}}
+                style={{
+                  backgroundColor: activeCategory === "5" ? "#E5E5E5" : "",
+                }}
               >
                 Electronics
               </li>
